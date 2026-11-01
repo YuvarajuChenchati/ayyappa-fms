@@ -57,6 +57,7 @@ h3 { font-size: 1.2rem; font-weight: 700; }
   font: 600 1rem var(--body); transition: transform 0.2s, box-shadow 0.2s, background 0.2s;
 }
 .btn:hover { transform: translateY(-2px); }
+.btn-primary { background: var(--accent); color: var(--navy); box-shadow: 0 10px 30px -10px rgba(143, 227, 107, 0.6); }
 .btn-wa { background: var(--wa); color: #05301a; box-shadow: 0 10px 30px -10px rgba(37, 211, 102, 0.7); }
 .btn-ghost { border: 1px solid #3a5aa6; color: var(--ink); background: rgba(255, 255, 255, 0.04); }
 .btn-ghost:hover { background: rgba(255, 255, 255, 0.1); }
@@ -135,6 +136,8 @@ h1 { font-size: clamp(2.3rem, 5.2vw, 3.7rem); line-height: 1.08; font-weight: 80
 .team-icon svg { width: 34px; height: 34px; }
 .team-card h3, .team-card p { transform: translateZ(24px); }
 .team-card p { color: #46557a; font-size: 0.95rem; }
+.scope { list-style: none; width: 100%; margin-top: auto; padding-top: 0.9rem; border-top: 1px solid var(--line); display: grid; gap: 0.35rem; font-size: 0.86rem; color: var(--navy); transform: translateZ(16px); }
+.scope li::before { content: "✓ "; color: var(--green); font-weight: 700; }
 
 /* ---------- Hospital services ---------- */
 .split-row { display: flex; flex-wrap: wrap; align-items: center; gap: 4rem; }
@@ -194,6 +197,30 @@ h1 { font-size: clamp(2.3rem, 5.2vw, 3.7rem); line-height: 1.08; font-weight: 80
   border-radius: 12px; border: 1px solid var(--line); background: var(--navy); resize: vertical;
 }
 .contact-form select option { background: var(--navy); }
+.contact-form small { font-weight: 400; color: var(--muted); }
+.form-row { display: grid; grid-template-columns: repeat(auto-fit, minmax(190px, 1fr)); gap: 1rem; }
+.request-type { border: 0; display: flex; flex-wrap: wrap; gap: 0.5rem; }
+.request-type legend { width: 100%; margin-bottom: 0.4rem; font-size: 0.88rem; font-weight: 500; color: #c8d2ea; }
+.request-type label {
+  flex-direction: row; align-items: center; gap: 0.5rem; padding: 0.55rem 1rem; border-radius: 999px;
+  border: 1px solid var(--line); background: var(--navy); color: var(--ink); cursor: pointer; font-size: 0.92rem;
+}
+.request-type input { accent-color: var(--accent); }
+.request-type label:has(input:checked) { border-color: var(--accent); background: rgba(143, 227, 107, 0.12); }
+
+/* ---------- Sections waiting for team facts (hidden until published) ---------- */
+.about-copy { font-size: 1.1rem; margin-bottom: 1.5rem; }
+.facts { list-style: none; display: flex; flex-wrap: wrap; gap: 2.5rem; margin-bottom: 1.2rem; }
+.facts strong { display: block; font: 800 2rem var(--display); color: var(--green); }
+.facts span { font-size: 0.9rem; color: var(--muted); }
+.about-photo { flex: 1 1 320px; }
+.about-photo img, .work-grid img { width: 100%; aspect-ratio: 4 / 3; object-fit: cover; border-radius: 20px; background: var(--tint); }
+.about-photo figcaption, .work-grid figcaption { margin-top: 0.6rem; font-size: 0.9rem; color: var(--muted); }
+.work-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 1.25rem; }
+.faq { max-width: 800px; }
+.faq details { border-bottom: 1px solid var(--line); padding: 1.1rem 0; }
+.faq summary { cursor: pointer; font-weight: 600; font-size: 1.05rem; }
+.faq details p { margin-top: 0.6rem; color: var(--muted); }
 
 /* ---------- Footer & floating button ---------- */
 .footer { border-top: 1px solid #1c3577; padding: 2rem 1.5rem 2.5rem; font-size: 0.88rem; color: #93a1c6; }

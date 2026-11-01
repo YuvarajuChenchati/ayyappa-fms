@@ -21,12 +21,15 @@ document.getElementById("wa-form").addEventListener("submit", (e) => {
   e.preventDefault();
   const f = new FormData(e.target);
   const lines = [
-    "Hi Ayyappa FMS, I'd like to know more about your services.",
+    `Hi Ayyappa FMS, I'd like ${f.get("request").toLowerCase()}.`,
+    "",
     `Name: ${f.get("name")}`,
+    f.get("org") ? `Organisation: ${f.get("org")}` : null,
+    `Property: ${f.get("property")}, ${f.get("location")}`,
     `Service: ${f.get("service")}`,
-    f.get("location") && `Property: ${f.get("location")}`,
-    f.get("message") && `Message: ${f.get("message")}`,
-  ].filter(Boolean);
+    `Workers needed: ${f.get("workers")}`,
+    f.get("message") ? `Details: ${f.get("message")}` : null,
+  ].filter((l) => l !== null); // optional fields left empty are dropped
   window.open(waUrl(CONFIG.whatsapp[0], lines.join("\n")), "_blank", "noopener");
 });
 
