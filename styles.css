@@ -1,0 +1,228 @@
+/* Navy and green from the Ayyappa logo; WhatsApp green on every contact button.
+   Hero, contact card and footer are dark; content sections are light. */
+:root {
+  --navy: #0a1a48;
+  --navy-2: #0d2058;
+  --panel: #102766;
+  --line: #2a4590;
+  --blue: #1d4fa8;
+  --green: #1a7a33;
+  --paper: #ffffff;
+  --tint: #f3f6fb;
+  --accent: #8fe36b;
+  --ink: #eef2fb;
+  --muted: #b4c0de;
+  --wa: #25d366;
+  --display: "Sora", system-ui, sans-serif;
+  --body: "DM Sans", system-ui, sans-serif;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body { font-family: var(--body); font-size: 17px; line-height: 1.6; background: var(--navy); color: var(--ink); overflow-x: hidden; }
+a { color: inherit; text-decoration: none; }
+img, svg { display: block; }
+h1, h2, h3 { font-family: var(--display); text-wrap: balance; }
+h2 { font-size: clamp(1.9rem, 3.6vw, 2.75rem); line-height: 1.15; font-weight: 700; }
+h3 { font-size: 1.2rem; font-weight: 700; }
+:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+.accent { color: var(--accent); }
+.muted { color: var(--muted); }
+.container { max-width: 1200px; margin: 0 auto; }
+.eyebrow { font-size: 0.82rem; font-weight: 600; letter-spacing: 0.16em; text-transform: uppercase; color: var(--accent); margin-bottom: 0.8rem; }
+
+.scroll-progress {
+  position: fixed; inset: 0 auto auto 0; z-index: 100; width: 100%; height: 3px;
+  background: linear-gradient(90deg, var(--green), var(--accent));
+  transform-origin: 0 50%; transform: scaleX(0);
+}
+
+/* ---------- Nav ---------- */
+.nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 50;
+  display: flex; align-items: center; justify-content: space-between; gap: 1rem;
+  padding: 0.8rem clamp(1rem, 4vw, 3rem); transition: background 0.3s;
+}
+.nav.scrolled { background: rgba(10, 26, 72, 0.88); backdrop-filter: blur(12px); }
+.brand { background: #fff; border-radius: 12px; padding: 5px 10px; }
+.brand img { height: 48px; width: auto; }
+.nav-links { display: flex; gap: 2rem; font-size: 0.95rem; }
+.nav-links a { color: var(--muted); transition: color 0.2s; }
+.nav-links a:hover { color: var(--ink); }
+
+/* ---------- Buttons ---------- */
+.btn {
+  display: inline-flex; align-items: center; justify-content: center; gap: 0.6rem;
+  min-height: 54px; padding: 0 1.6rem; border-radius: 999px; border: 0; cursor: pointer;
+  font: 600 1rem var(--body); transition: transform 0.2s, box-shadow 0.2s, background 0.2s;
+}
+.btn:hover { transform: translateY(-2px); }
+.btn-wa { background: var(--wa); color: #05301a; box-shadow: 0 10px 30px -10px rgba(37, 211, 102, 0.7); }
+.btn-ghost { border: 1px solid #3a5aa6; color: var(--ink); background: rgba(255, 255, 255, 0.04); }
+.btn-ghost:hover { background: rgba(255, 255, 255, 0.1); }
+.btn-ghost .wa-icon { color: var(--wa); }
+.btn-sm { min-height: 44px; padding: 0 1.1rem; font-size: 0.92rem; }
+.btn-block { width: 100%; }
+.wa-icon { width: 20px; height: 20px; }
+
+/* ---------- Hero ---------- */
+.hero {
+  position: relative; isolation: isolate; min-height: 100vh; display: flex; align-items: center;
+  padding: 8rem clamp(1rem, 6vw, 5rem) 5rem; overflow: hidden;
+  background:
+    radial-gradient(55% 60% at 75% 45%, rgba(29, 79, 168, 0.45), transparent 70%),
+    radial-gradient(40% 40% at 70% 80%, rgba(31, 138, 58, 0.25), transparent 70%),
+    var(--navy);
+}
+#scene { position: absolute; inset: 0; z-index: -1; width: 100%; height: 100%; }
+.hero::after {
+  content: ""; position: absolute; inset: 0; z-index: -1; pointer-events: none;
+  background: linear-gradient(90deg, rgba(10, 26, 72, 0.95) 0%, rgba(10, 26, 72, 0.6) 42%, transparent 70%),
+    linear-gradient(0deg, var(--navy) 0%, transparent 22%);
+}
+.hero-content { max-width: 620px; display: flex; flex-direction: column; gap: 1.5rem; }
+.hero-content .eyebrow { margin: 0; }
+h1 { font-size: clamp(2.3rem, 5.2vw, 3.7rem); line-height: 1.08; font-weight: 800; letter-spacing: -0.02em; }
+.tags { display: flex; flex-wrap: wrap; gap: 0.6rem; }
+.tag { padding: 0.35rem 1rem; border-radius: 999px; font-size: 0.85rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; }
+.tag-green { background: var(--green); }
+.tag-blue { background: var(--blue); }
+.lead { font-size: 1.15rem; color: var(--muted); max-width: 530px; }
+.hero-cta { display: flex; flex-wrap: wrap; gap: 1rem; }
+.hero-content > * { opacity: 0; transform: translateY(30px); animation: rise 0.9s cubic-bezier(0.2, 0.7, 0.2, 1) forwards; }
+.hero-content > :nth-child(2) { animation-delay: 0.1s; }
+.hero-content > :nth-child(3) { animation-delay: 0.2s; }
+.hero-content > :nth-child(4) { animation-delay: 0.3s; }
+.hero-content > :nth-child(5) { animation-delay: 0.4s; }
+@keyframes rise { to { opacity: 1; transform: none; } }
+
+.scroll-hint { position: absolute; bottom: 2rem; left: 50%; transform: translateX(-50%); width: 26px; height: 42px; border: 2px solid rgba(255, 255, 255, 0.4); border-radius: 20px; }
+.scroll-hint span { position: absolute; top: 8px; left: 50%; width: 4px; height: 8px; margin-left: -2px; background: var(--ink); border-radius: 2px; animation: wheel 1.6s infinite; }
+@keyframes wheel { from { opacity: 1; transform: translateY(0); } to { opacity: 0; transform: translateY(14px); } }
+
+/* ---------- Sections ---------- */
+/* Light sections re-point the shared variables, so text, cards and icons switch to dark-on-light automatically */
+.section {
+  padding: 6.5rem clamp(1rem, 4vw, 1.5rem); background: var(--paper); color: var(--ink);
+  --ink: #0a1a48; --muted: #46557a; --accent: var(--green); --panel: var(--paper); --line: #dbe3f1;
+}
+.section-alt { background: var(--tint); }
+.section-head { max-width: 700px; margin-bottom: 3rem; }
+.section-head.split { max-width: none; display: flex; flex-wrap: wrap; justify-content: space-between; align-items: flex-end; gap: 1.5rem; }
+.section-head.split > div { max-width: 640px; }
+.section-head.split .muted { max-width: 340px; }
+.section-head .muted { margin-top: 0.8rem; }
+
+/* Scroll reveal: elements tilt up from a 3D plane. Only hidden when script runs, so the page still reads without it. */
+.js .reveal {
+  opacity: 0;
+  transform: perspective(900px) rotateX(22deg) translateY(60px) translateZ(-80px);
+  transition: opacity 0.9s ease, transform 0.9s cubic-bezier(0.2, 0.7, 0.2, 1);
+  transition-delay: var(--d, 0s);
+}
+.js .reveal.in { opacity: 1; transform: none; }
+
+/* ---------- Support team cards ---------- */
+.team { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1.25rem; perspective: 1200px; }
+.team-card {
+  position: relative; background: #fff; color: var(--navy); border-radius: 20px; padding: 1.8rem 1.4rem;
+  display: flex; flex-direction: column; align-items: center; text-align: center; gap: 0.75rem;
+  border: 1px solid var(--line); box-shadow: 0 30px 50px -28px rgba(10, 26, 72, 0.45); transform-style: preserve-3d;
+}
+.js .team-card.in:hover { transition: transform 0.15s ease-out; transition-delay: 0s; }
+.team-icon { width: 72px; height: 72px; border-radius: 50%; background: var(--c); color: #fff; display: grid; place-items: center; transform: translateZ(40px); }
+.team-icon svg, .place svg { fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
+.team-icon svg { width: 34px; height: 34px; }
+.team-card h3, .team-card p { transform: translateZ(24px); }
+.team-card p { color: #46557a; font-size: 0.95rem; }
+
+/* ---------- Hospital services ---------- */
+.split-row { display: flex; flex-wrap: wrap; align-items: center; gap: 4rem; }
+.split-row > :first-child { flex: 1 1 460px; min-width: 0; }
+.split-row h2 { margin-bottom: 1.6rem; }
+.checks { list-style: none; display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 0.9rem 2rem; font-size: 1.1rem; margin-bottom: 1.4rem; }
+.checks li { position: relative; padding-left: 2.2rem; }
+.checks li::before {
+  content: "✓"; position: absolute; left: 0; top: 0.15rem; width: 1.5rem; height: 1.5rem; border-radius: 50%;
+  display: grid; place-items: center; background: var(--green); color: #fff; font-size: 0.8rem; font-weight: 700;
+}
+/* pan-y keeps vertical page scrolling on phones; sideways swipes rotate the cube */
+.cube-wrap { flex: 1 1 360px; display: grid; place-items: center; height: 360px; perspective: 1000px; cursor: grab; touch-action: pan-y; user-select: none; }
+.cube-wrap.dragging { cursor: grabbing; }
+.cube { --s: 210px; position: relative; width: var(--s); height: var(--s); transform-style: preserve-3d; transform: rotateX(var(--rx, -22deg)) rotateY(var(--ry, 38deg)); }
+.face {
+  position: absolute; inset: 0; display: grid; place-items: center; border-radius: 16px; border: 1px solid var(--accent);
+  font-family: var(--display); font-size: 1.4rem; font-weight: 800; color: #fff;
+}
+.face svg { width: 64px; height: 64px; fill: none; stroke: #fff; stroke-width: 2.5; stroke-linecap: round; }
+.f-front { background: #fff; color: var(--navy); transform: translateZ(calc(var(--s) / 2)); }
+.f-right { background: var(--blue); transform: rotateY(90deg) translateZ(calc(var(--s) / 2)); }
+.f-back { background: var(--green); transform: rotateY(180deg) translateZ(calc(var(--s) / 2)); }
+.f-left { background: #13306e; transform: rotateY(-90deg) translateZ(calc(var(--s) / 2)); }
+.f-top { background: var(--green); transform: rotateX(90deg) translateZ(calc(var(--s) / 2)); }
+.f-bottom { background: var(--navy-2); transform: rotateX(-90deg) translateZ(calc(var(--s) / 2)); }
+
+/* ---------- Places ---------- */
+.places { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1.25rem; }
+.place { background: var(--panel); border: 1px solid var(--line); box-shadow: 0 12px 30px -20px rgba(10, 26, 72, 0.35); border-radius: 20px; padding: 1.8rem 1.5rem; display: flex; flex-direction: column; gap: 0.6rem; transition: border-color 0.25s, background 0.25s; }
+.js .place.in:hover { transform: translateY(-6px); border-color: var(--accent); transition: transform 0.25s, border-color 0.25s; transition-delay: 0s; }
+.place svg { width: 36px; height: 36px; color: var(--accent); }
+.place p { color: var(--muted); font-size: 0.95rem; }
+
+/* ---------- Contact ---------- */
+/* Dark card on the light section: restore the dark-theme variables inside it */
+.contact-card {
+  --ink: #eef2fb; --muted: #b4c0de; --accent: #8fe36b; --panel: #102766; --line: #2a4590;
+  display: flex; flex-wrap: wrap; gap: 3.5rem; padding: clamp(1.5rem, 4vw, 3.5rem); border-radius: 28px;
+  background: linear-gradient(135deg, var(--navy) 0%, var(--panel) 100%); color: var(--ink);
+  border: 1px solid var(--line); box-shadow: 0 40px 70px -40px rgba(10, 26, 72, 0.6);
+}
+.contact-info { flex: 1 1 380px; min-width: 0; display: flex; flex-direction: column; gap: 1rem; }
+.contact-info h2 { margin-bottom: 0.6rem; }
+.number-pill {
+  display: flex; align-items: center; gap: 1rem; max-width: 380px; min-height: 64px; padding: 0 1.5rem;
+  border-radius: 999px; background: #fff; color: var(--navy); font: 800 clamp(1.4rem, 3vw, 1.9rem) var(--display);
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+.number-pill:hover { transform: translateY(-2px); box-shadow: 0 0 0 4px rgba(37, 211, 102, 0.35); }
+.number-pill span { flex: none; width: 40px; height: 40px; border-radius: 50%; background: var(--wa); color: #fff; display: grid; place-items: center; }
+.number-pill svg { width: 22px; height: 22px; }
+.contact-form { flex: 1 1 420px; min-width: 0; display: flex; flex-direction: column; gap: 1rem; }
+.contact-form label { display: flex; flex-direction: column; gap: 0.4rem; font-size: 0.88rem; font-weight: 500; color: #c8d2ea; }
+.contact-form input, .contact-form select, .contact-form textarea {
+  font: inherit; font-size: 1rem; color: var(--ink); min-height: 48px; padding: 0.7rem 1rem;
+  border-radius: 12px; border: 1px solid var(--line); background: var(--navy); resize: vertical;
+}
+.contact-form select option { background: var(--navy); }
+
+/* ---------- Footer & floating button ---------- */
+.footer { border-top: 1px solid #1c3577; padding: 2rem 1.5rem 2.5rem; font-size: 0.88rem; color: #93a1c6; }
+.footer-row { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 1rem; }
+.wa-float {
+  position: fixed; right: 1.3rem; bottom: 1.3rem; z-index: 60; width: 60px; height: 60px; border-radius: 50%;
+  display: grid; place-items: center; background: var(--wa); color: #fff; box-shadow: 0 10px 30px -6px rgba(37, 211, 102, 0.7); transition: transform 0.2s;
+}
+.wa-float svg { width: 32px; height: 32px; }
+.wa-float::after { content: ""; position: absolute; inset: 0; border-radius: 50%; border: 2px solid var(--wa); animation: pulse 2s infinite; }
+.wa-float:hover { transform: scale(1.08); }
+@keyframes pulse { from { transform: scale(1); opacity: 0.8; } to { transform: scale(1.6); opacity: 0; } }
+
+/* ---------- Responsive ---------- */
+@media (max-width: 860px) {
+  .nav-links { display: none; }
+  .brand img { height: 40px; }
+  .nav .btn-sm { padding: 0 0.9rem; }
+  .hero { align-items: flex-end; padding-top: 7rem; }
+  .hero::after { background: linear-gradient(0deg, var(--navy) 8%, rgba(10, 26, 72, 0.82) 55%, rgba(10, 26, 72, 0.25)); }
+  .cube-wrap { height: 300px; }
+}
+@media (max-width: 480px) {
+  .nav .btn-sm { font-size: 0; gap: 0; width: 44px; padding: 0; }
+  .hero-cta .btn { width: 100%; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after { animation: none !important; transition: none !important; }
+  .hero-content > *, .js .reveal { opacity: 1; transform: none; }
+}
